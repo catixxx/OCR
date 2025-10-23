@@ -45,5 +45,5 @@ h1 {
     padding: 10px 30px;
     transition: all 0.3s ease;
 }
-.stButton > button:
+
 
