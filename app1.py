@@ -4,32 +4,46 @@ import numpy as np
 import pytesseract
 from PIL import Image
 
+# 💫 Configuración general
+st.set_page_config(
+    page_title="✨ Reconocimiento Óptico de Caracteres",
+    page_icon="🌈",
+    layout="wide"
+)
 
-st.title("Reconocimiento óptico de Caracteres")
-
-img_file_buffer = st.camera_input("Toma una Foto")
-
-with st.sidebar:
-      filtro = st.radio("Aplicar Filtro",('Con Filtro', 'Sin Filtro'))
-
-
-if img_file_buffer is not None:
-    # To read image file buffer with OpenCV:
-    bytes_data = img_file_buffer.getvalue()
-    cv2_img = cv2.imdecode(np.frombuffer(bytes_data, np.uint8), cv2.IMREAD_COLOR)
-    
-    if filtro == 'Con Filtro':
-         cv2_img=cv2.bitwise_not(cv2_img)
-    else:
-         cv2_img= cv2_img
-    
-        
-    img_rgb = cv2.cvtColor(cv2_img, cv2.COLOR_BGR2RGB)
-    text=pytesseract.image_to_string(img_rgb)
-    st.write(text) 
-    
-
-
-    
-
+# 🌈 Fondo degradado estilo arcoíris + tipografía femenina
+st.markdown("""
+<style>
+body {
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee, #b9fbc0);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    font-family: "Comic Sans MS", "Poppins", cursive;
+}
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+h1 {
+    color: #7a42f4;
+    text-align: center;
+    font-weight: bold;
+}
+.sidebar .sidebar-content {
+    background: linear-gradient(180deg, #ffd1ff, #ffe6f7, #e0c3fc);
+    border-radius: 15px;
+    padding: 20px;
+}
+.stButton > button {
+    background: linear-gradient(90deg, #a1c4fd, #c2e9fb);
+    color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+}
+.stButton > button:
 
